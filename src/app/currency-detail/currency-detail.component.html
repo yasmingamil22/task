@@ -1,0 +1,23 @@
+<!-- currency-detail.component.html -->
+<div>
+    <h2>Currency Details</h2>
+    <p>From: {{ fromCurrency }} ({{ getFullCurrencyName(fromCurrency) }})</p>
+    <p>To: {{ toCurrency }} ({{ getFullCurrencyName(toCurrency) }})</p>
+  
+    <button (click)="goBack()">Go Back</button>
+  
+    <!-- Historical Data -->
+    <h3>Historical Data</h3>
+    <p>Last year: {{ historicalData.lastYear }} {{ fromCurrency }} = {{ historicalData.lastYearAmount }}</p>
+    <p>Last month: {{ historicalData.lastMonth }} {{ fromCurrency }} = {{ historicalData.lastMonthAmount }}</p>
+    <p>Last day: {{ historicalData.lastDay }} {{ fromCurrency }} = {{ historicalData.lastDayAmount }}</p>
+  
+    <!-- Popular Currency Conversions -->
+    <h3>Popular Conversions</h3>
+    <ul>
+      <li *ngFor="let currency of popularCurrencies">
+        {{ getFullCurrencyName(currency) }} = {{ getPopularConversion(currency) }} {{ toCurrency }}
+      </li>
+    </ul>
+  </div>
+  

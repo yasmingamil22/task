@@ -1,0 +1,46 @@
+<!-- currency-converter.component.html -->
+<div>
+    <app-header></app-header>
+    
+    <!-- Amount Input and Dropdowns -->
+    <input type="number" [(ngModel)]="amount" placeholder="Enter amount" (input)="onAmountChange()" />
+  
+    <select [(ngModel)]="fromCurrency">
+      <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+    </select>
+  
+    <button (click)="swapCurrencies()">Swap</button>
+  
+    <select [(ngModel)]="toCurrency">
+      <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+    </select>
+  
+    <button (click)="convert()">Convert</button>
+  
+    <!-- Conversion Result -->
+    <div *ngIf="convertedAmount">
+      <p>{{ amount }} {{ fromCurrency }} = {{ convertedAmount }} {{ toCurrency }}</p>
+    </div>
+  
+    <!-- Quick Conversions -->
+    <div>
+      <h3>Quick Conversions (FROM to TO)</h3>
+      <ul>
+        <li *ngFor="let conv of quickConversionsFromTo">
+          {{ conv.amount }} {{ fromCurrency }} = {{ conv.result | number:'1.2-2' }} {{ toCurrency }}
+        </li>
+      </ul>
+  
+      <h3>Quick Conversions (TO to FROM)</h3>
+      <ul>
+        <li *ngFor="let conv of quickConversionsToFrom">
+          {{ conv.amount }} {{ toCurrency }} = {{ conv.result | number:'1.2-2' }} {{ fromCurrency }}
+        </li>
+      </ul>
+    </div>
+  
+
+    <button (click)="navigateToDetails()">Go to Currency Details</button>
+
+  </div>
+  
